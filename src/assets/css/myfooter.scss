@@ -1,11 +1,13 @@
 .my-footer{
-  footer{
+  width: 100vw;
+  min-width: 1000px;
+  text-align: center;
+  .footer-box{
+    width: 100%;
+    padding: 15px;
     position: fixed;
     bottom: 0;
-    
-    .footer-box{
-      background-color: #1d303b;
-
-    }
+    background-color: #1d303b;
+    color: #FFF;
   }
 }

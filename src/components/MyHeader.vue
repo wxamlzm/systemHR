@@ -24,6 +24,12 @@
   </header>
 </template>
 
+<script>
+  export default{
+    name: 'MyHeader'
+  }
+</script>
+
 <style lang="scss">
-  @import "../assets/css/myheader.scss"
+  @import "../assets/css/myheader.scss";
 </style>

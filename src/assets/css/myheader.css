@@ -1,0 +1,38 @@
+.my-header {
+  width: 100vw;
+  min-width: 1000px;
+  position: fixed;
+  top: 0;
+}
+
+.my-header .header-box {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #1d303b;
+}
+
+.my-header .header-box .logo {
+  float: left;
+  width: 150px;
+}
+
+.my-header .header-box .logo > img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.my-header .header-box .operation > div {
+  float: right;
+}
+
+.my-header .header-box .operation a {
+  float: left;
+  color: #FFF;
+  display: block;
+  line-height: 30px;
+  width: 80px;
+  text-align: center;
+}
+/*# sourceMappingURL=myheader.css.map */
