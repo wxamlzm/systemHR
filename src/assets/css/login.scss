@@ -1,0 +1,24 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    .login-box {
+        margin: auto;
+        width: 1440px;
+        height: 900px;
+        display: flex;
+        .wrap {
+            width: 61%;        
+            height: 100%;
+            background-color: azure;
+            background-image: url('/img/login-banner.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .sign-form {
+            width: 39%;
+            height: 100%;
+            background-color: burlywood;
+        }
+    }
+}

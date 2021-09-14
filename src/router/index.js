@@ -5,18 +5,23 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    // redirect:'/home',
-    component: Home,
-  }
+	{
+		path: '/',
+		name: 'Home',
+		// redirect:'/home',
+		component: Home
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import(/*webpackChunkName: "Login"*/ '../views/Login.vue')
+	}
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+	mode: 'history',
+	base: process.env.BASE_URL,
+	routes
 })
 
 export default router
