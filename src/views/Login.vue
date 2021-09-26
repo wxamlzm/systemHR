@@ -87,10 +87,10 @@ export default {
             let res = reg.test(this.upwd);
             return res
         },
-        goLogin(){
+        goLogin(urlStr, params){
             // 如果账户验证通过，则将用户名和登录状态存入vuex进行保存，作为其他页面判断登录状态的依据
             return new Promise( (resolve,reject)=> {
-                axios.post('/users/login', `uname=${this.uname}&upwd=${this.upwd}`)
+                axios.post(urlStr,params)
                      .then( res => {
                         console.log(res.data.data[0].uname)
                         resolve(res.data.data[0].uname);
@@ -103,7 +103,9 @@ export default {
         checkForm(){
             if(this.checkuname() && this.checkupwd()){
                 // 如果输入符合规范，则发送请求进行账户验证
-                this.goLogin()
+                let urlStr = '/users/login';
+                let params = `uname=${this.uname}&upwd=${this.upwd}`;
+                this.goLogin(urlStr, params)
                     .then(res => {
                         this.setUsersState(res);
                         this.$router.push('/');
