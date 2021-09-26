@@ -1,8 +1,7 @@
 <template>
     <el-container>
-        <el-header></el-header>
-        <el-main></el-main>
-        <el-footer></el-footer>
+        <el-aside>aside</el-aside>
+        <el-main>main</el-main>
     </el-container>
 </template>
 
@@ -25,4 +24,5 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "@/assets/css/Home.scss"
 </style>

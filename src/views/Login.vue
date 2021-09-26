@@ -30,7 +30,7 @@
                             <div v-show="isErr" class="login-err"><img src="@/assets/icon/cha.svg">请输入正确的用户名</div>
                         </div>
                         <div>
-                            <input type="text" placeholder="请输入密码" v-model="upwd" :class="{'login-err':isErr}">
+                            <input type="password" placeholder="请输入密码" v-model="upwd" :class="{'login-err':isErr}">
                             <div v-show="isErr" class="login-err"><img src="@/assets/icon/cha.svg">请输入正确的密码</div>
                         </div>
                     </div>
@@ -58,7 +58,6 @@
 
 <script>
 import axios from 'axios';
-import {mapState} from "vuex"
 import {mapMutations} from "vuex"
 
 export default {
@@ -88,32 +87,32 @@ export default {
             let res = reg.test(this.upwd);
             return res
         },
+        goLogin(){
+            // 如果账户验证通过，则将用户名和登录状态存入vuex进行保存，作为其他页面判断登录状态的依据
+            return new Promise( (resolve,reject)=> {
+                axios.post('/users/login', `uname=${this.uname}&upwd=${this.upwd}`)
+                     .then( res => {
+                        console.log(res.data.data[0].uname)
+                        resolve(res.data.data[0].uname);
+                     })
+            })
+        },
         /**
          * 检查登录状态表单提交内容是否合规
          */
         checkForm(){
             if(this.checkuname() && this.checkupwd()){
                 // 如果输入符合规范，则发送请求进行账户验证
-                this.goLogin().then(res => {
-                    this.setUsersState(res);
-                    this.$router.push('/');
-                });
+                this.goLogin()
+                    .then(res => {
+                        this.setUsersState(res);
+                        this.$router.push('/');
+                    });
             }else{
                 // 如果输入不符合规范，给出提示
                 this.isErr = true;
             }
         },
-        goLogin(){
-            // 如果账户验证通过，则将用户名和登录状态存入vuex进行保存，作为其他页面判断登录状态的依据
-            return new Promise( (resolve,reject)=> {
-                axios.post('/users/login', `uname=${this.uname}&upwd=${this.upwd}`)
-                        .then( res => {
-                            console.log(res.data.data[0].uname)
-                            resolve(res.data.data[0].uname);
-                        })
-                }
-             )
-        }
     },
     computed:{
     },
