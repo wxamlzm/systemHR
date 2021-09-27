@@ -105,6 +105,7 @@ export default {
                 // 如果输入符合规范，则发送请求进行账户验证
                 let urlStr = '/users/login';
                 let params = `uname=${this.uname}&upwd=${this.upwd}`;
+                
                 this.goLogin(urlStr, params)
                     .then(res => {
                         this.setUsersState(res);
