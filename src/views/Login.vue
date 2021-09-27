@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import {mapMutations} from "vuex"
+// import axios from 'axios';
+import {mapMutations, mapActions} from "vuex"
 
 export default {
     data(){
@@ -68,7 +68,14 @@ export default {
             isErr: false
         }
     },
+    computed:{
+    },
+    mounted(){
+
+    },
     methods: {
+        // 
+        ...mapActions(["goLogin"]),
         // 获取vuex中的函数，设置vuex中uname的值
         ...mapMutations(["setUsersState"]),
         // 当重新点击input表单准备输入的时候，重置样式
@@ -87,41 +94,31 @@ export default {
             let res = reg.test(this.upwd);
             return res
         },
-        goLogin(urlStr, params){
-            // 如果账户验证通过，则将用户名和登录状态存入vuex进行保存，作为其他页面判断登录状态的依据
-            return new Promise( (resolve,reject)=> {
-                axios.post(urlStr,params)
-                     .then( res => {
-                        console.log(res.data.data[0].uname)
-                        resolve(res.data.data[0].uname);
-                     })
-            })
-        },
         /**
          * 检查登录状态表单提交内容是否合规
          */
         checkForm(){
             if(this.checkuname() && this.checkupwd()){
                 // 如果输入符合规范，则发送请求进行账户验证
-                let urlStr = '/users/login';
-                let params = `uname=${this.uname}&upwd=${this.upwd}`;
+                // let urlStr = '/users/login';
+                // let params = `uname=${this.uname}&upwd=${this.upwd}`;
+                let obj = {
+                    urlStr: '/users/login',
+                    params: `uname=${this.uname}&upwd=${this.upwd}`
+                }
                 
-                this.goLogin(urlStr, params)
+                this.goLogin(obj)
                     .then(res => {
-                        this.setUsersState(res);
+                        console.log('then',res);
                         this.$router.push('/');
-                    });
+                    })
+
             }else{
                 // 如果输入不符合规范，给出提示
                 this.isErr = true;
             }
         },
     },
-    computed:{
-    },
-    mounted(){
-
-    }
 }
 
 </script>
