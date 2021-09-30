@@ -28,7 +28,7 @@ export default new Vuex.Store({
                   context.commit("setUsersState", res.data.uname);
                   resolve();
                 }else{
-                  console.log('验证失败')
+                  reject(res.data.msg);
                 }
              })
       })

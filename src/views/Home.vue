@@ -46,10 +46,12 @@ export default {
         }
     },
     computed:{
-        ...mapState(["uname"])
+        ...mapState(["uname", "isLogin"])
     },
     mounted(){
-        console.log(`欢迎回来${this.uname}`);
+        console.log(`欢迎回来${this.uname},你的登录状态${this.isLogin}`);
+        console.log('router', this.$router);
+        console.log('route', this.$route);
     }
 }
 </script>

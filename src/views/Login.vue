@@ -100,18 +100,16 @@ export default {
         checkForm(){
             if(this.checkuname() && this.checkupwd()){
                 // 如果输入符合规范，则发送请求进行账户验证
-                // let urlStr = '/users/login';
-                // let params = `uname=${this.uname}&upwd=${this.upwd}`;
-                let obj = {
+                let objForm = {
                     urlStr: '/users/login',
                     params: `uname=${this.uname}&upwd=${this.upwd}`
                 }
                 
-                this.goLogin(obj)
+                this.goLogin(objForm)
                     .then(res => {
                         console.log('then',res);
                         this.$router.push('/');
-                    })
+                    }, err => alert(err));
 
             }else{
                 // 如果输入不符合规范，给出提示
