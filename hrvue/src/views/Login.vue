@@ -107,7 +107,10 @@ export default {
                 
                 this.goLogin(objForm)
                     .then(res => {
-                        console.log('then',res);
+                        console.log('返回值是',res);
+                        // 将登录成功之后的token，保存到客户端的sessionStorage中
+                        // 项目中出现了登录以外的其他api接口必须在登录之后才能访问
+                        // token只能在当前网站
                         this.$router.push('/');
                     }, err => alert(err));
 
